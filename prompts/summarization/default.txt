@@ -1,0 +1,4 @@
+Summarize the following text while retaining core technical terms and actionable takeaways.
+Text:
+{text}
+Summary:

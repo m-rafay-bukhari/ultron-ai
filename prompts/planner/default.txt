@@ -1,0 +1,4 @@
+Break down the following user goal into a structured sequence of workflow steps.
+Goal: {goal}
+Available Tools: {tools_list}
+Output should be a structured plan.

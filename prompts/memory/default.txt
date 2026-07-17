@@ -1,0 +1,4 @@
+Extract key facts, preferences, and long-term learnings from the following conversation history.
+History:
+{conversation_history}
+Output facts as bullet points.

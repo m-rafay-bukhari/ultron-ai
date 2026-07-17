@@ -1,0 +1,4 @@
+Select the single best tool from the available tools list to answer the user query.
+Query: {query}
+Tools List: {tools_list}
+Tool:

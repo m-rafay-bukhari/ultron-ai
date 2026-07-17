@@ -1,0 +1,4 @@
+Reason about the following problem.
+Problem: {problem}
+Context: {context}
+Provide a step-by-step reasoning trace.

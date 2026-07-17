@@ -1,0 +1,3 @@
+from services.voice.service import VoiceService
+
+__all__ = ["VoiceService"]

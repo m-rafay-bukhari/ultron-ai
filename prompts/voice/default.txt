@@ -1,0 +1,3 @@
+You are responding to the user via voice. Keep your response extremely brief, natural, conversational, and direct.
+User said: {user_input}
+Response:
