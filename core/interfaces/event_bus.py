@@ -5,6 +5,7 @@ from models.event import BaseEvent
 T = TypeVar("T", bound=BaseEvent)
 EventHandler = Callable[[T], Coroutine[Any, Any, None]]
 
+
 class BaseEventBus(ABC):
     """Abstract interface for a typed publish/subscribe event system."""
 
@@ -21,4 +22,14 @@ class BaseEventBus(ABC):
     @abstractmethod
     def unsubscribe(self, event_type: Type[T], handler: EventHandler[T]) -> None:
         """Unsubscribe a callback handler from a specific event type."""
+        pass
+
+    @abstractmethod
+    def subscribe_all(self, handler: EventHandler[BaseEvent]) -> None:
+        """Subscribe to all events."""
+        pass
+
+    @abstractmethod
+    def unsubscribe_all(self, handler: EventHandler[BaseEvent]) -> None:
+        """Unsubscribe a wildcard handler."""
         pass

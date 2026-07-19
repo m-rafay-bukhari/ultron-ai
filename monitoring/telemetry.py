@@ -4,6 +4,7 @@ from models.event import BaseEvent
 
 logger = logging.getLogger(__name__)
 
+
 class TelemetrySystem:
     """Subscribes to EventBus events to track operations, latencies, and system events."""
 
@@ -14,5 +15,7 @@ class TelemetrySystem:
 
     async def _track_event(self, event: BaseEvent) -> None:
         """Handle and log any event occurring in the system."""
-        logger.info(f"[TELEMETRY] Event Occurred: ID={event.event_id} | Type={event.event_type} | Time={event.timestamp}")
+        logger.info(
+            f"[TELEMETRY] Event Occurred: ID={event.event_id} | Type={event.event_type} | Time={event.timestamp}"
+        )
         # In a real environment, this might push metrics to Prometheus/OpenTelemetry/etc.

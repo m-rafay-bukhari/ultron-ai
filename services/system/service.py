@@ -1,7 +1,7 @@
 import logging
-from typing import Dict, Any
 
 logger = logging.getLogger(__name__)
+
 
 class SystemService:
     """Interacts with macOS scripting interface, system sound APIs, and environment status."""

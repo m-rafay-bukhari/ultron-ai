@@ -1,11 +1,9 @@
-from storage.base import StorageBackend
-from storage.sqlite import SQLiteStorage
-from storage.vector import ChromaVectorStorage
-from storage.cache import RedisCacheStorage
+from storage.sqlite import SQLiteConfigRepository
+from storage.vector import ChromaMemoryRepository
+from storage.cache import RedisConfigRepository
 
 __all__ = [
-    "StorageBackend",
-    "SQLiteStorage",
-    "ChromaVectorStorage",
-    "RedisCacheStorage",
+    "SQLiteConfigRepository",
+    "ChromaMemoryRepository",
+    "RedisConfigRepository",
 ]

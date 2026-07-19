@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+
 class SystemMetrics:
     """Tracks and exposes performance counters and Gauges for system diagnostics."""
 
@@ -14,7 +15,4 @@ class SystemMetrics:
         self._gauges[name] = value
 
     def get_metrics(self) -> Dict[str, Any]:
-        return {
-            "counters": dict(self._counters),
-            "gauges": dict(self._gauges)
-        }
+        return {"counters": dict(self._counters), "gauges": dict(self._gauges)}

@@ -1,3 +1,3 @@
-from storage.sqlite.connection import SQLiteStorage
+from storage.sqlite.connection import SQLiteConfigRepository
 
-__all__ = ["SQLiteStorage"]
+__all__ = ["SQLiteConfigRepository"]

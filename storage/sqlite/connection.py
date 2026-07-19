@@ -1,15 +1,17 @@
 import logging
-from typing import Dict, Any, Optional, List
-from storage.base import StorageBackend
+from typing import Any, Optional, Dict
+from core.interfaces.repository import BaseConfigRepository
 
 logger = logging.getLogger(__name__)
 
-class SQLiteStorage(StorageBackend):
-    """Skeletal SQLite database storage provider."""
+
+class SQLiteConfigRepository(BaseConfigRepository):
+    """Skeletal SQLite database config repository provider."""
 
     def __init__(self, db_path: str = "ultron.db") -> None:
         self.db_path = db_path
         self._connected = False
+        self._store: Dict[str, Any] = {}
 
     async def connect(self) -> None:
         logger.info(f"Connecting to SQLite database at {self.db_path}")
@@ -21,16 +23,15 @@ class SQLiteStorage(StorageBackend):
 
     async def get(self, key: str) -> Optional[Any]:
         logger.info(f"SQLite GET key: {key}")
-        return None
+        return self._store.get(key)
 
     async def set(self, key: str, value: Any, ttl: Optional[int] = None) -> bool:
         logger.info(f"SQLite SET key: {key}")
+        self._store[key] = value
         return True
 
     async def delete(self, key: str) -> bool:
         logger.info(f"SQLite DELETE key: {key}")
+        if key in self._store:
+            del self._store[key]
         return True
-
-    async def query(self, statement: str, params: Optional[List[Any]] = None) -> List[Dict[str, Any]]:
-        logger.info(f"SQLite QUERY: {statement} with params: {params}")
-        return []

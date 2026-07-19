@@ -1,5 +1,6 @@
 from typing import Dict, Any, Type
 
+
 class Registry:
     """A generic class registry for dynamic component lookup."""
 

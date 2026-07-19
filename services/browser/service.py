@@ -1,7 +1,7 @@
 import logging
-from typing import Dict, Any
 
 logger = logging.getLogger(__name__)
+
 
 class BrowserService:
     """Manages browser automation instances, cookies, and page scraping scripts."""

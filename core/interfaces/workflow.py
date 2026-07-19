@@ -1,26 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
 from models.workflow import WorkflowStatus, WorkflowStep
-
-class BaseWorkflowStep(ABC):
-    """Abstract interface for a single workflow execution step."""
-
-    @property
-    @abstractmethod
-    def id(self) -> str:
-        """Get the unique step ID."""
-        pass
-
-    @property
-    @abstractmethod
-    def name(self) -> str:
-        """Get the step name."""
-        pass
-
-    @abstractmethod
-    async def execute(self) -> Optional[WorkflowStep]:
-        """Execute the workflow step and return the updated step model."""
-        pass
 
 
 class BaseWorkflow(ABC):
@@ -39,7 +18,7 @@ class BaseWorkflow(ABC):
         pass
 
     @abstractmethod
-    def add_step(self, step: BaseWorkflowStep) -> None:
+    def add_step(self, step: WorkflowStep) -> None:
         """Add a step to the workflow."""
         pass
 

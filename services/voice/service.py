@@ -3,6 +3,7 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
+
 class VoiceService:
     """Orchestrates wake-word detection, speech-to-text, and text-to-speech rendering pipelines."""
 

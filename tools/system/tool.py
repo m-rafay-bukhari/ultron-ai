@@ -2,11 +2,14 @@ from typing import Dict, Any
 from pydantic import BaseModel
 from tools.base import BaseToolImpl
 
+
 class SystemArgsSchema(BaseModel):
     pass
 
+
 class SystemStatsTool(BaseToolImpl):
     """Tool to retrieve host system information (CPU, memory, uptime)."""
+
     name: str = "system.get_stats"
     description: str = "Get host performance and system stats."
     args_model: type[BaseModel] = SystemArgsSchema

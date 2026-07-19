@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, Any
 from models.tool import ToolMetadata, ToolExecutionResult
 
+
 class BaseTool(ABC):
     """Abstract interface for all executable tools in the ULTRON OS."""
 

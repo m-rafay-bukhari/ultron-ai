@@ -7,6 +7,7 @@ from models.workflow import Workflow
 
 logger = logging.getLogger(__name__)
 
+
 class Planner(BasePlanner):
     """Generates structured execution plans/workflows using an underlying Reasoner."""
 
@@ -14,9 +15,7 @@ class Planner(BasePlanner):
         self.reasoner = reasoner
 
     async def create_plan(
-        self, 
-        goal: str, 
-        context: Optional[Dict[str, Any]] = None
+        self, goal: str, context: Optional[Dict[str, Any]] = None
     ) -> Workflow:
         """Create a plan by reasoning about the goal."""
         logger.info(f"Planner creating plan for goal: '{goal}'")
@@ -26,5 +25,5 @@ class Planner(BasePlanner):
             id=str(uuid4()),
             goal=goal,
             steps=[],
-            metadata={"planner_model": getattr(self.reasoner, "model_name", "unknown")}
+            metadata={"planner_model": getattr(self.reasoner, "model_name", "unknown")},
         )

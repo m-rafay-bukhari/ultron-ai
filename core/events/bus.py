@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseEvent)
 
+
 class EventBus(BaseEventBus):
     """Concrete implementation of the typed publish/subscribe event system."""
 
@@ -19,25 +20,23 @@ class EventBus(BaseEventBus):
     async def publish(self, event: BaseEvent) -> None:
         """Publish a typed event to all active subscribers and wildcard subscribers."""
         event_type = type(event)
-        
+
         # Gather handlers for this specific event type
         handlers_to_run = list(self._handlers.get(event_type, []))
         # Gather wildcard handlers (listening to all events)
         wildcard_to_run = list(self._wildcard_handlers)
 
         if not handlers_to_run and not wildcard_to_run:
-            logger.debug(f"No subscribers registered for event type: {event_type.__name__}")
+            logger.debug(
+                f"No subscribers registered for event type: {event_type.__name__}"
+            )
             return
 
-        # Execute all handlers concurrently in background tasks
-        tasks = []
+        # Spawn all handlers concurrently in background tasks without blocking the publisher
         for handler in handlers_to_run:
-            tasks.append(self._safely_execute(handler, event))
+            asyncio.create_task(self._safely_execute(handler, event))
         for handler in wildcard_to_run:
-            tasks.append(self._safely_execute(handler, event))
-
-        if tasks:
-            await asyncio.gather(*tasks, return_exceptions=True)
+            asyncio.create_task(self._safely_execute(handler, event))
 
     def subscribe(self, event_type: Type[T], handler: EventHandler[T]) -> None:
         """Register an async callback handler for a specific event type."""
@@ -45,7 +44,9 @@ class EventBus(BaseEventBus):
             self._handlers[event_type] = []
         if handler not in self._handlers[event_type]:
             self._handlers[event_type].append(handler)
-            logger.info(f"Subscribed {handler.__name__ if hasattr(handler, '__name__') else str(handler)} to {event_type.__name__}")
+            logger.info(
+                f"Subscribed {handler.__name__ if hasattr(handler, '__name__') else str(handler)} to {event_type.__name__}"
+            )
 
     def unsubscribe(self, event_type: Type[T], handler: EventHandler[T]) -> None:
         """Unsubscribe a callback handler from a specific event type."""
@@ -65,9 +66,14 @@ class EventBus(BaseEventBus):
             self._wildcard_handlers.remove(handler)
             logger.info("Unsubscribed wildcard handler")
 
-    async def _safely_execute(self, handler: EventHandler[Any], event: BaseEvent) -> None:
+    async def _safely_execute(
+        self, handler: EventHandler[Any], event: BaseEvent
+    ) -> None:
         try:
             await handler(event)
         except Exception as e:
-            logger.error(f"Error executing event handler {handler} for event {event.event_type}: {e}", exc_info=True)
+            logger.error(
+                f"Error executing event handler {handler} for event {event.event_type}: {e}",
+                exc_info=True,
+            )
             # Ensure handlers don't crash the publisher

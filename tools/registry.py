@@ -4,6 +4,7 @@ from core.interfaces.tool import BaseTool
 
 logger = logging.getLogger(__name__)
 
+
 class ToolRegistry:
     """Manages the registration and lookup of executable tools."""
 

@@ -1,3 +1,3 @@
-from core.workflow.workflow import WorkflowStepImpl, WorkflowImpl
+from core.workflow.workflow import WorkflowImpl
 
-__all__ = ["WorkflowStepImpl", "WorkflowImpl"]
+__all__ = ["WorkflowImpl"]

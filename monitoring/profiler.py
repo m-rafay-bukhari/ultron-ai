@@ -3,6 +3,7 @@ from typing import Dict, Any
 
 logger = logging.getLogger(__name__)
 
+
 class Profiler:
     """Profiles memory usage and CPU cycles for system execution."""
 

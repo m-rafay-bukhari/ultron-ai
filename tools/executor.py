@@ -1,11 +1,10 @@
 import logging
-from typing import Dict, Any
-from core.interfaces.executor import BaseExecutor
 from models.tool import ToolExecutionRequest, ToolExecutionResult
 from tools.registry import ToolRegistry
 from core.exceptions import ToolNotFoundException
 
 logger = logging.getLogger(__name__)
+
 
 class ToolExecutor:
     """Helper executor scoped specifically for running tools from the local registry."""

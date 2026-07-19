@@ -2,17 +2,18 @@ from typing import Dict, Any, Optional
 from models.user import UserProfile
 from models.session import Session
 
+
 class ExecutionContext:
     """Represents the context surrounding a specific execution flow or user interaction.
-    
+
     Includes the session details, active user profile, and arbitrary key-value environmental context.
     """
 
     def __init__(
-        self, 
-        session: Session, 
-        user_profile: UserProfile, 
-        variables: Optional[Dict[str, Any]] = None
+        self,
+        session: Session,
+        user_profile: UserProfile,
+        variables: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.session = session
         self.user_profile = user_profile

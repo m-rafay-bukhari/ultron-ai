@@ -1,3 +1,3 @@
-from storage.vector.chromadb import ChromaVectorStorage
+from storage.vector.chromadb import ChromaMemoryRepository
 
-__all__ = ["ChromaVectorStorage"]
+__all__ = ["ChromaMemoryRepository"]

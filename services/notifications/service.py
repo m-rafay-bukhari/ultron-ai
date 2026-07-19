@@ -2,6 +2,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class NotificationService:
     """Dispatches system-level popups, native toasts, and notification alerts."""
 

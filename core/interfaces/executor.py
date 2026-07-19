@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Any
 from models.tool import ToolExecutionRequest, ToolExecutionResult
 from models.workflow import WorkflowStep
+
 
 class BaseExecutor(ABC):
     """Abstract interface for the action and tool execution layer."""

@@ -1,3 +1,3 @@
-from storage.cache.redis import RedisCacheStorage
+from storage.cache.redis import RedisConfigRepository
 
-__all__ = ["RedisCacheStorage"]
+__all__ = ["RedisConfigRepository"]
